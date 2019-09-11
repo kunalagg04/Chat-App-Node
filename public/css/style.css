@@ -1,8 +1,37 @@
 body{
+    padding-top: 3%;
     color: aliceblue !important;
-    background: #6441A5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: black !important;
+    font-size: 1.4em !important; 
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+button{
+    background-color: #29303B !important;
+    outline: none;
+    border: none;
+   
+}
+
+button:active{
+    border: none;
+}
+
+#msg-but{
+    margin-left: 10px !important;
+}
+
+input{
+    background-color: #29303B !important;
+    height: 2.5em;
+    border-radius: 5px;
+    border: none;
+    color: white !important;
 }
 
 #message-template {
@@ -11,4 +40,16 @@ body{
 
 #location-template{
     display : none
+}
+
+@media only screen and (max-width: 600px){
+    body{
+        width: 100%;
+        font-size: 3em !important;
+    }
+
+    h2{
+        font-size: 3em !important;
+        margin-bottom: 5%;
+    }
 }
