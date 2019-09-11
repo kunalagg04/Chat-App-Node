@@ -2,6 +2,7 @@ const express = require('express')
 const http = require('http')
 const path = require('path')
 const socketio = require('socket.io')
+const { getMessage , getLocationMessage } = require('./utils/messages')
 
 const app = express()
 const server = http.createServer(app)
@@ -36,29 +37,26 @@ app.use(express.static(publicDirectoryPath))
 let welcome = 'Welcome to chat app bhosdike'
 
 io.on('connection' , (socket) => {
-    socket.emit('welcome' , welcome)
+    socket.emit('newMessage' , getMessage('Welcome') )
 
     //broadcast sends it to everybody apart from current
-    socket.broadcast.emit('newMessage','A new user has joined')
+    socket.broadcast.emit('newMessage' , getMessage('A new user joined'))
 
     socket.on('sendMessage' , (msg , callback) => {
         console.log(msg)
-        io.emit('newMessage',msg)
+        io.emit('newMessage', getMessage(msg))
         callback('gaya na bc')
     })
 
     socket.on('location',(location) => {
-        socket.broadcast.emit('rlocation',location)
+        socket.broadcast.emit('rlocation', getLocationMessage(location))
     })
 
     //exec func when a user disconnects
     socket.on('disconnect',() => {
-        io.emit('newMessage','A user left')
+        io.emit('newMessage', getMessage('A user left'))
     })
 })
-
-
-
 
 server.listen(port , () => {
     console.log(`Server is up on ${port}`)
